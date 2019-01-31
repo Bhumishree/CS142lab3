@@ -14,22 +14,22 @@ class Node{
 class Circlist{
    public:
    Node*head;
+  Node*tail;
    Circlist() {
       head=NULL;
+     tail=NULL;
    }
 
 //INSERT
-  void insert(int value) {
+  void insrt(int value) {
    Node*temp= new Node(value);
       if(head==NULL) {
         head=temp;
       }
       else {
-            Node*current=head;
-             while (current->next!=head){
-               current=current->next;
-               current->next=temp;
+               tail->next=temp;
          }
+       tail=temp;
        temp->next=head;
       }
 
@@ -41,7 +41,7 @@ class Circlist{
       i++;
      current=current->next;
     }
-  Node*temp=new Node;
+  Node*temp=new Node(value);
   temp->data=value;
   temp->next=current->next;
   current->next=temp;
@@ -65,14 +65,14 @@ void delta() {
 
 void deleteAt (int pos) {
  Node*current=head;
-  int=1;
+  int i=1;
 
- Node*temp2=new Node;
+ Node*temp2=head;
  while(i<pos)  {
    temp2=temp->next;
     i++;
   }
- Node*temp1=head;
+ Node*temp=head;
  while(i<pos-1) {
   temp=temp->next;
      i++;
@@ -104,6 +104,7 @@ while(i<pos) {
           cout<< "No elements"<<endl;
           return;
        }
+     else {
       while(current->next!= head){
         cout<< current->data<< "->";
         current= current->next;
@@ -111,16 +112,17 @@ while(i<pos) {
         cout<<current->data;
         cout<<endl;
       }
+   }
 };
 
 //MAIN FUNCTION
 
   int main() {
    Circlist l1;
-    l1.insert(5);
-    l1.insert(10);
-    l1.insert(15);
-    l1.insert(20);
+    l1.insrt(5);
+    l1.insrt(10);
+    l1.insrt(15);
+    l1.insrt(20);
     l1.display();
     l1.insertAt(1,3);
     l1.display();
